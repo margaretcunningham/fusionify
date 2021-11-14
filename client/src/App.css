@@ -15,6 +15,7 @@
 }
 
 .App-title {
+  font: sans-serif;
   font-size: 1.5em;
 }
 
@@ -30,4 +31,9 @@
 
 div, button {
   margin: 10px;
+  color: #1db954;
+}
+
+body {
+  background-color: black;
 }

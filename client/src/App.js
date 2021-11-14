@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import './App.css';
+import { Button } from '@material-ui/core';
 
-import { getTrack } from "./functions.js";
+import { getTrack, getTopArtists } from './functions.js';
+
+import { createTheme, ThemeProvider } from '@material-ui/core';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#1db954"
+    },
+    secondary: {
+      main: "#1db954"
+    }
+  }
+});
 
 class App extends Component {
   constructor(){
@@ -11,7 +26,6 @@ class App extends Component {
 
     this.state = {
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' },
       auth: {headers: {'Authorization': 'Bearer ' + token}}
     }
   }
@@ -37,17 +51,24 @@ class App extends Component {
         {<div>
           {getTrack('11dFghVXANMlKmJXsNCbNl', this.state.auth)}
         </div>}
+        {<div>
+          {getTopArtists(this.state.auth)}
+        </div>}
         {!this.state.loggedIn && <a href='http://localhost:8888' > Login to Spotify </a>}
-        <div>
-          Now Playing: { this.state.nowPlaying.name }
-        </div>
-        <div>
-          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }}/>
-        </div>
+
         { this.state.loggedIn &&
-          <button onClick={() => this.getNowPlaying()}>
-            Check Now Playing
-          </button>
+          <ThemeProvider theme={theme}>
+            <div>
+              <Button variant='contained' color='primary' onClick={() => this.getNowPlaying()}>
+                Select Users
+              </Button>
+            </div>
+            <div>
+              <Button variant='contained' color='primary' onClick={() => this.getNowPlaying()}>
+                Select Playlists
+              </Button>
+            </div>
+          </ThemeProvider>
         }
       </div>
     );
