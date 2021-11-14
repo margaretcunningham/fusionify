@@ -3,9 +3,6 @@ import './App.css';
 
 import { getTrack } from "./functions.js";
 
-import SpotifyWebApi from 'spotify-web-api-js';
-const spotifyApi = new SpotifyWebApi();
-
 class App extends Component {
   constructor(){
     super();
