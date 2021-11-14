@@ -28,16 +28,9 @@ class App extends Component {
   }
 
   getNowPlaying(){
-    spotifyApi.getMyCurrentPlaybackState()
-      .then((response) => {
-        this.setState({
-          nowPlaying: { 
-              name: response.item.name, 
-              albumArt: response.item.album.images[0].url
-            }
-        });
-      })
+    console.log('getNowPlaying() here');
   }
+
   render() {
     return (
       <div className="App">
